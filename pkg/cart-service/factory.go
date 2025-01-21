@@ -17,7 +17,8 @@ func RunCartService() *gin.Engine {
 	cartServer := server.Group("/carts")
 
 	cartServer.GET("/:id", cartService.getCart)
-	cartServer.POST("/:id", cartService.addToCart)
+	cartServer.POST("/addToCart", cartService.addToCart)
+	cartServer.POST("/addCart/:id", cartService.addCart)
 
 	return server
 }
