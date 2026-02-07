@@ -21,7 +21,7 @@ type UserRepository struct {
 	dbConn *gorm.DB
 }
 
-func (u *UserRepository) CreateUser(user *models.User) (error) {
+func (u *UserRepository) CreateUser(user *models.User) error {
 	tx := u.dbConn.Create(user)
 	if tx.Error != nil {
 		return tx.Error
@@ -43,8 +43,7 @@ func (u *UserRepository) GetUser(id string) (*models.User, error) {
 
 func (u *UserRepository) GetUserBasedOnQuery(query string, value string) (*models.User, error) {
 	getUser := &models.User{}
-	tx := u.dbConn.Take(getUser, query, value)
-	
+	tx := u.dbConn.Where(query, value).Take(getUser)
 	if tx.Error != nil {
 		return nil, tx.Error
 	}

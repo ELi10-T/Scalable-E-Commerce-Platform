@@ -1,0 +1,7 @@
+{
+  "editor.multiCursorModifier": "alt",
+  "go.useLanguageServer": true,
+  "gopls": {
+    "ui.semanticTokens": true
+  }
+}
